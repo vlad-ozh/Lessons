@@ -7,5 +7,5 @@ int main()
     int weightShip;
     cout << "enter the mass of the ship (in kg): ";
     cin >> weightShip;
-    cout << "amount of fuel: " << weightShip / 3 - 2;
+    cout << "the amount of fuel per 300 light years: " << 300 * (weightShip / 3 - 2);
 }
