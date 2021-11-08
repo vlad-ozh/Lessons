@@ -10,13 +10,13 @@ int main()
     for (int i = 0; i < 4; i++){
         arr_1[i] = rand() % 10;
         arr_2[i] = rand() % 10;
-        cout << arr_1[i] << "\t";
+        cout << arr_1[i] << "    ";
         value_1 = (value_1 * 10) + arr_1[i];
     }
     cout << endl;
     for (int i = 0; i < 4; i++){
         value_2 = (value_2 * 10) + arr_2[i];
-        cout << arr_2[i] << "\t";
+        cout << arr_2[i] << "    ";
     }
     cout << endl << "Got: " << value_1 << " + " << value_2 << endl;
     cout << "Result: " << value_1 + value_2;
