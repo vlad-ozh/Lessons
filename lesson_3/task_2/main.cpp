@@ -3,11 +3,27 @@
 
 using namespace std;
 
-int main() {
     int usersData[10] = {0};
     int usersPasswords[10] = {0};
     int userIndex = -1, userPassword = -1, value = 0, valueChoice = 0;
 
+void prompt(string message) {
+    cout << message;
+    cin >> value;
+    cout << "Are you sure?" << endl;
+    cout << "1 - Yes" << endl;
+    cout << "2 - No" << endl;
+    cout << "3 - exit" << endl;
+    cout << "Your choose: ";
+    cin >> valueChoice;
+}
+void transactionMessage(){
+    system ("cls");
+    cout << "Transaction successful!" << endl;
+    cout << "Your money: " << usersData[userIndex - 1] << "$";
+}
+
+int main() {
     usersPasswords[0] = rand() % 9000 + 1000;
     for (int i = 0; i < 10; i++){
         usersPasswords[i] = rand() % 9000 + 1000;
@@ -45,38 +61,20 @@ int main() {
         cout << "Your choose: ";
         cin >> valueChoice;
         if (valueChoice == 1){
-            cout << "How much you want to add money: ";
-            cin >> value;
-            cout << "Are you sure?" << endl;
-            cout << "1 - Yes" << endl;
-            cout << "2 - No" << endl;
-            cout << "3 - exit" << endl;
-            cout << "Your choose: ";
-            cin >> valueChoice;
+            prompt("How much you want to add money: ");
             if (valueChoice == 1){
                 usersData[userIndex - 1] += value;
-                system ("cls");
-                cout << endl << "Transaction successful!" << endl;
-                cout << "Your money: " << usersData[userIndex - 1] << "$";
+                transactionMessage();
             } else  if (valueChoice == 2){
                 system ("cls");
                 continue;
             } else break;
         } else if (valueChoice == 2){
-            cout << "How much you want to withdraw money: ";
-            cin >> value;
-            cout << "Are you sure?" << endl;
-            cout << "1 - Yes" << endl;
-            cout << "2 - No" << endl;
-            cout << "3 - exit" << endl;
-            cout << "Your choose: ";
-            cin >> valueChoice;
+            prompt("How much you want to withdraw money: ");
             if (valueChoice == 1){
                 if (value <= usersData[userIndex - 1]){
                     usersData[userIndex - 1] -= value;
-                    system ("cls");
-                    cout << "Transaction successful!" << endl;
-                    cout << "Your money: " << usersData[userIndex - 1] << "$";
+                    transactionMessage();
                 } else {
                     system ("cls");
                     cout << "There are not enough funds in your account to withdraw this amount!" << endl;
