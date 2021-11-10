@@ -27,14 +27,14 @@ int main() {
             continue;
         }
         if (userPassword == -1) {
-            cout << "Enter your account password: ";
+            cout << "Enter the password for the "<< userIndex << " account: ";
             cin >> userPassword;
         }
         if (usersPasswords[userIndex - 1] != userPassword) {
             userPassword = -1;
+            continue;
             cout << "Your password is wrong!" << endl;
             cout << "Try again..." << endl;
-            continue;
         }
 
         cout << endl << "Your money is: " << usersData[userIndex - 1] << "$" << endl;
@@ -57,7 +57,7 @@ int main() {
                 usersData[userIndex - 1] += value;
                 system ("cls");
                 cout << endl << "Transaction successful!" << endl;
-                cout << "Your money: " << usersData[userIndex - 1];
+                cout << "Your money: " << usersData[userIndex - 1] << "$";
             } else  if (valueChoice == 2){
                 system ("cls");
                 continue;
@@ -76,7 +76,7 @@ int main() {
                     usersData[userIndex - 1] -= value;
                     system ("cls");
                     cout << "Transaction successful!" << endl;
-                    cout << "Your money: " << usersData[userIndex - 1];
+                    cout << "Your money: " << usersData[userIndex - 1] << "$";
                 } else {
                     system ("cls");
                     cout << "There are not enough funds in your account to withdraw this amount!" << endl;
