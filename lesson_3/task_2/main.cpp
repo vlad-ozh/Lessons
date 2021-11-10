@@ -72,7 +72,7 @@ int main() {
             cout << "Your choose: ";
             cin >> valueChoice;
             if (valueChoice == 1){
-                  if (value <= usersData[userIndex - 1]){
+                if (value <= usersData[userIndex - 1]){
                     usersData[userIndex - 1] -= value;
                     system ("cls");
                     cout << "Transaction successful!" << endl;
