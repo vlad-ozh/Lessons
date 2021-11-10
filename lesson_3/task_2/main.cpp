@@ -1,70 +1,105 @@
 #include <iostream>
-#include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 
 int main() {
-    int bankCash[10] = {0};
-    int pincode[10] = {0};
-    int acc = 0, pin = 0, value = 0;
-    bankCash[0] = rand();
+    int usersData[10] = {0};
+    int usersPasswords[10] = {0};
+    int userIndex = -1, userPassword = -1, value = 0, valueChoice = 0;
+
+    usersPasswords[0] = rand() % 9000 + 1000;
     for (int i = 0; i < 10; i++){
-        bankCash[i] = rand();
-        pincode[i] = rand() % 10000;
+        usersPasswords[i] = rand() % 9000 + 1000;
+        usersData[i] = rand();
+        cout << "PIN to account "<< i + 1 << ": " << usersPasswords[i] << endl;
     }
-    do{
-        //=================================================================================================== output PINs
-        for (int i = 0; i < 10; i++) cout << "PIN for " << i + 1 << " account:\t" << pincode[i] << endl;
-        //=================================================================================================== choose account
-        cout << endl << "Bank account: ";
-        cin >> acc;
-        cout << endl;
-        if (acc > 0 && acc <= 10) { //==================================================== check account
-            do{
-                cout << "PIN for " << acc << " account: ";
-                cin >> pin;
-                    if (pin == pincode[acc - 1]){ //====================================== check PIN
-                    //==================================================================== balance account and action
-                        cout << "Your money: " << bankCash[acc - 1] << "$" << endl;
-                        cout << "What i can do?" << endl;
-                        cout << "1 - add money" << endl;
-                        cout << "2 - withdraw money" << endl;
-                        do {
-                            cout << "Your choose: ";
-                            cin >> value;
-                //========================================================================== add money
-                            if (value == 1){
-                                cout << endl << "How much do you want to add: ";
-                                cin >> value;
-                                bankCash[acc - 1] += value;
-                                cout << "Transaction successful!";
-                                cout << endl << "Your money: " << bankCash[acc - 1];
-                                break;
-                            } else if (value == 2){ //====================================== withdraw money
-                                do {
-                                    cout << endl << "How much do you want to withdraw: ";
-                                    cin >> value;
-                                    if (bankCash[acc - 1] >= value){
-                                        bankCash[acc - 1] -= value;
-                                        cout << "Transaction successful!";
-                                        cout << endl << "Your money: " << bankCash[acc - 1];
-                                        break;
-                                    } else cout << "There are not enough money in the account...";
-                                } while (true);
-                                break;
-                            } else cout << "Incorrect choice..." << endl << "Please choose 1 or 2" << endl;
-                        }while (true);
-                    } else cout << "Your PIN is incorrect!" << endl;
-            }while (pin != pincode[acc - 1]);
-        }else cout << "Account does not exist" << endl;
-//================================================================================================ continue or break
-        cout << endl << "Do you want continue?" << endl << "1 - yes" << endl << "2 - no";
-        cout << endl << "Your choose: ";
-        cin >> value;
-        if  (value == 1) system ("cls");
-            else {
+
+    do {
+        if (userIndex == -1) {
+            cout << endl << "Enter your account number: ";
+            cin >> userIndex;
+        }
+        if (userIndex <= 0 || userIndex > 10) {
+            userIndex = -1;
+            cout << "Your user account is wrong!" << endl;
+            cout << "Try again..." << endl;
+            continue;
+        }
+        if (userPassword == -1) {
+            cout << "Enter your account password: ";
+            cin >> userPassword;
+        }
+        if (usersPasswords[userIndex - 1] != userPassword) {
+            userPassword = -1;
+            cout << "Your password is wrong!" << endl;
+            cout << "Try again..." << endl;
+            continue;
+        }
+
+        cout << endl << "Your money is: " << usersData[userIndex - 1] << "$" << endl;
+        cout << "What I can do?" << endl;
+        cout << "1 - add money" << endl;
+        cout << "2 - withdraw money" << endl;
+        cout << "3 - exit" << endl;
+        cout << "Your choose: ";
+        cin >> valueChoice;
+        if (valueChoice == 1){
+            cout << "How much you want to add money: ";
+            cin >> value;
+            cout << "Are you sure?" << endl;
+            cout << "1 - Yes" << endl;
+            cout << "2 - No" << endl;
+            cout << "3 - exit" << endl;
+            cout << "Your choose: ";
+            cin >> valueChoice;
+            if (valueChoice == 1){
+                usersData[userIndex - 1] += value;
                 system ("cls");
-                break;
-            }
-    }while (true);
+                cout << endl << "Transaction successful!" << endl;
+                cout << "Your money: " << usersData[userIndex - 1];
+            } else  if (valueChoice == 2){
+                system ("cls");
+                continue;
+            } else break;
+        } else if (valueChoice == 2){
+            cout << "How much you want to withdraw money: ";
+            cin >> value;
+            cout << "Are you sure?" << endl;
+            cout << "1 - Yes" << endl;
+            cout << "2 - No" << endl;
+            cout << "3 - exit" << endl;
+            cout << "Your choose: ";
+            cin >> valueChoice;
+            if (valueChoice == 1){
+                  if (value <= usersData[userIndex - 1]){
+                    usersData[userIndex - 1] -= value;
+                    system ("cls");
+                    cout << "Transaction successful!" << endl;
+                    cout << "Your money: " << usersData[userIndex - 1];
+                } else {
+                    system ("cls");
+                    cout << "There are not enough funds in your account to withdraw this amount!" << endl;
+                    cout << "Try again..." << endl;
+                    continue;
+                }
+            } else  if (valueChoice == 2) {
+                system ("cls");
+                continue;
+            } else break;
+        } else break;
+
+        cout << endl << "Do you want continue?" << endl;
+        cout << "1 - Yes" << endl;
+        cout << "2 - No" << endl;
+        cout << "Your choose: ";
+        cin >> valueChoice;
+        if (valueChoice == 1){
+            userIndex = -1;
+            userPassword = -1;
+            value = 0;
+            system ("cls");
+            for (int i = 0; i < 10; i++) cout << "PIN to account "<< i + 1 << ": " << usersPasswords[i] << endl;
+        } else break;
+    } while (true);
 }
