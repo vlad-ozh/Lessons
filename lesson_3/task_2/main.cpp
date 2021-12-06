@@ -30,9 +30,9 @@ int main() {
         }
         if (usersPasswords[userIndex - 1] != userPassword) {
             userPassword = -1;
-            continue;
             cout << "Your password is wrong!" << endl;
-            cout << "Try again..." << endl;
+            cout << "Try again...";
+            continue;
         }
         cout << endl << "Your money is: " << usersData[userIndex - 1] << "$" << endl;
         cout << "What I can do?" << endl;
@@ -44,6 +44,13 @@ int main() {
         if (valueChoice == 1){
             cout << "How much you want to add money: ";
             cin >> value;
+            if (value < 1) {
+                value = 0;
+                system ("cls");
+                cout << "Error..." << endl;
+                cout << "Try again!" << endl;
+                continue;
+            }
             cout << "Are you sure?" << endl;
             cout << "1 - Yes" << endl;
             cout << "2 - No" << endl;
@@ -62,6 +69,7 @@ int main() {
         } else if (valueChoice == 2){
             cout << "How much you want to withdraw money: ";
             cin >> value;
+            if (value < 0) value = -value;
             cout << "Are you sure?" << endl;
             cout << "1 - Yes" << endl;
             cout << "2 - No" << endl;
