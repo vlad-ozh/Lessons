@@ -1,14 +1,16 @@
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
 int main()
 {
-    string str = {" "};
+    char str[256] = {""};
     int currentPunct = 0;
+    string text;
     cout << "Enter any string: ";
-    getline(cin, str);
-    for (int iter = 0; iter < str.size(); iter++){
+    cin.getline(str, 256);
+    for (int iter = 0; iter < strlen(str); iter++){
         if (str[iter] == ',' || str[iter] == '.' ||
             str[iter] == ';' || str[iter] == ':' ||
             str[iter] == '!' || str[iter] == '?' ||
@@ -16,6 +18,6 @@ int main()
             str[iter] == '(' || str[iter] == ')')
             currentPunct += 1;
     }
-    if (str.empty()) cout << "String is empty...";
-    cout << "Number of punctuation marks: " << currentPunct << endl;
+    if (strlen(str) == 0) cout << "String is empty..." << endl;
+        else cout << "Number of punctuation marks: " << currentPunct << endl;
 }
