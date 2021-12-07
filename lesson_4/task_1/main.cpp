@@ -7,7 +7,6 @@ int main()
 {
     char str[256] = {""};
     int currentPunct = 0;
-    string text;
     cout << "Enter any string: ";
     cin.getline(str, 256);
     for (int iter = 0; iter < strlen(str); iter++){
