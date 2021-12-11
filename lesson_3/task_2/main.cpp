@@ -14,24 +14,18 @@ int main() {
         cout << "PIN to account "<< i + 1 << ": " << usersPasswords[i] << endl;
     }
     do {
-        if (userIndex == -1) {
-            cout << endl << "Enter your account number: ";
-            cin >> userIndex;
-        }
+        cout << endl << "Enter your account number: ";
+        cin >> userIndex;
         if (userIndex <= 0 || userIndex > 10) {
-            userIndex = -1;
             cout << "Your user account is wrong!" << endl;
             cout << "Try again..." << endl;
             continue;
         }
-        if (userPassword == -1) {
-            cout << "Enter the password for the "<< userIndex << " account: ";
-            cin >> userPassword;
-        }
+        cout << "Enter the password for the "<< userIndex << " account: ";
+        cin >> userPassword;
         if (usersPasswords[userIndex - 1] != userPassword) {
-            userPassword = -1;
             cout << "Your password is wrong!" << endl;
-            cout << "Try again...";
+            cout << "Try again..." << endl;
             continue;
         }
         cout << endl << "Your money is: " << usersData[userIndex - 1] << "$" << endl;
