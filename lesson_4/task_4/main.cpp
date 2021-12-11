@@ -5,20 +5,26 @@ using namespace std;
 
 int main()
 {
-    string str;
+    char str[200] = "";
     long long hashCode = 0;
-    getline(cin, str);
-    for (int i = 0; i < str.size(); i++){
+    cout << "Enter the string: ";
+    cin.getline(str, 200);
+    for (int i = 0; i < strlen(str); i++){
         if (str[i] == 'a' || str[i] == 'e' ||
             str[i] == 'i' || str[i] == 'o' ||
-            str[i] == 'u' || str[i] == 'y'){
+            str[i] == 'u' || str[i] == 'y' ||
+            str[i] == 'A' || str[i] == 'E' ||
+            str[i] == 'I' || str[i] == 'O' ||
+            str[i] == 'U' || str[i] == 'Y'){
             hashCode++;
         }
         if (str[i] == ' '){
-            if (str[i + 1] != ' ' && i != str.size() - 1) hashCode *= 10;
+            if (str[i + 1] != ' ' && i != strlen(str) - 1) hashCode *= 10;
                 else continue;
         }
     }
-    if (str.empty()) cout << "String is empty";
+    if (strlen(str) == 0) cout << "String is empty";
         else cout << "Your hash code: " << hashCode;
+        cout << endl << strlen(str);
+
 }
