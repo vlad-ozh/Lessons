@@ -18,16 +18,6 @@ int main()
             str[i + 1] = '*';
             str[i + 2] = '*';
             str[i + 3] = '*';
-        } else
-        if ((str[i] == 'f' || str[i] == 'F') &&
-            (str[i + 2] == 'u' || str[i + 2] == 'U') &&
-            (str[i + 4] == 'c' || str[i + 4] == 'C') &&
-            (str[i + 6] == 'k' || str[i + 6] == 'K'))
-        {
-            str[i] = '*';
-            str[i + 2] = '*';
-            str[i + 4] = '*';
-            str[i + 6] = '*';
         }
     }
     cout << "Your line with an anti-matte filter: " << str;
