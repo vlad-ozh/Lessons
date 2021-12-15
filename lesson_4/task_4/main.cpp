@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstring>
 
 using namespace std;
 
@@ -9,7 +8,7 @@ int main()
     long long hashCode = 0;
     cout << "Enter the string: ";
     cin.getline(str, 200);
-    for (int i = 0; i < strlen(str); i++){
+    for (int i = 0; i < 200; i++){
         if (str[i] == 'a' || str[i] == 'e' ||
             str[i] == 'i' || str[i] == 'o' ||
             str[i] == 'u' || str[i] == 'y' ||
@@ -19,12 +18,11 @@ int main()
             hashCode++;
         }
         if (str[i] == ' '){
-            if (str[i + 1] != ' ' && i != strlen(str) - 1) hashCode *= 10;
+            if (str[i + 1] != ' ' && str[i + 1] != '\0') hashCode *= 10;
                 else continue;
         }
+        if(str[i] == '\0') break;
     }
-    if (strlen(str) == 0) cout << "String is empty";
+    if (str[0] == '\0') cout << "String is empty";
         else cout << "Your hash code: " << hashCode;
-        cout << endl << strlen(str);
-
 }

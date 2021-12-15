@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstring>
 
 using namespace std;
 
@@ -8,7 +7,7 @@ int main()
     char str[200] = "";
     cout << "Enter the string (on english): ";
     cin.getline(str, 200);
-    for (int i = 0; i < strlen(str); i++){
+    for (int i = 0; i < 200; i++){
         if ((str[i] == 'f' || str[i] == 'F') &&
             (str[i + 1] == 'u' || str[i + 1] == 'U') &&
             (str[i + 2] == 'c' || str[i + 2] == 'C') &&
@@ -19,6 +18,7 @@ int main()
             str[i + 2] = '*';
             str[i + 3] = '*';
         }
+        if (str[i] == '\0') break;
     }
     cout << "Your line with an anti-matte filter: " << str;
 }
