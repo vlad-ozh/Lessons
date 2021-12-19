@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdlib.h>
 
 using namespace std;
 
@@ -32,61 +31,62 @@ int main() {
         cout << "What I can do?" << endl;
         cout << "1 - add money" << endl;
         cout << "2 - withdraw money" << endl;
-        cout << "3 - exit" << endl;
+        cout << "3 - Exit" << endl;
         cout << "Your choose: ";
         cin >> valueChoice;
-        if (valueChoice == 1){
-            cout << "How much you want to add money: ";
-            cin >> value;
-            if (value < 1) {
-                value = 0;
-                system ("cls");
-                cout << "Error..." << endl;
-                cout << "Try again!" << endl;
-                continue;
-            }
-            cout << "Are you sure?" << endl;
-            cout << "1 - Yes" << endl;
-            cout << "2 - No" << endl;
-            cout << "3 - exit" << endl;
-            cout << "Your choose: ";
-            cin >> valueChoice;
-            if (valueChoice == 1){
-                usersData[userIndex - 1] += value;
-                system ("cls");
-                cout << "Transaction successful!" << endl;
-                cout << "Your money: " << usersData[userIndex - 1] << "$";
-            } else  if (valueChoice == 2){
-                system ("cls");
-                continue;
-            } else break;
-        } else if (valueChoice == 2){
-            cout << "How much you want to withdraw money: ";
-            cin >> value;
-            if (value < 0) value = -value;
-            cout << "Are you sure?" << endl;
-            cout << "1 - Yes" << endl;
-            cout << "2 - No" << endl;
-            cout << "3 - exit" << endl;
-            cout << "Your choose: ";
-            cin >> valueChoice;
-            if (valueChoice == 1){
-                if (value <= usersData[userIndex - 1]){
-                    usersData[userIndex - 1] -= value;
-                    system ("cls");
-                    cout << "Transaction successful!" << endl;
-                    cout << "Your money: " << usersData[userIndex - 1] << "$";
-                } else {
-                    system ("cls");
+        switch (valueChoice){
+            case 1:
+                cout << "How much you want to add money: ";
+                cin >> value;
+                if (value < 1) {
+                    value = 0;
+                    cout << "Error..." << endl;
+                    cout << "Try again!" << endl;
+                    continue;
+                }
+                cout << "Are you sure?" << endl;
+                cout << "1 - Yes" << endl;
+                cout << "2 - No" << endl;
+                cout << "3 - Exit" << endl;
+                cout << "Your choose: ";
+                cin >> valueChoice;
+                switch (valueChoice){
+                    case 1:
+                        usersData[userIndex - 1] += value;
+                        cout << "Transaction successful!" << endl;
+                        cout << "Your money: " << usersData[userIndex - 1] << "$";
+                        break;
+                    case 2: continue;
+                    case 3: break;
+                }
+                break;
+            case 2:
+                cout << "How much you want to withdraw money: ";
+                cin >> value;
+                if (value < 0) value = -value;
+                else if (value > usersData[userIndex - 1]){
                     cout << "There are not enough funds in your account to withdraw this amount!" << endl;
                     cout << "Try again..." << endl;
                     continue;
                 }
-            } else  if (valueChoice == 2) {
-                system ("cls");
-                continue;
-            } else break;
-        } else break;
+                cout << "Are you sure?" << endl;
+                cout << "1 - Yes" << endl;
+                cout << "2 - No" << endl;
+                cout << "3 - Exit" << endl;
+                cout << "Your choose: ";
+                cin >> valueChoice;
+                switch (valueChoice){
+                    case 1:
+                        usersData[userIndex - 1] -= value;
+                        cout << "Transaction successful!" << endl;
+                        cout << "Your money: " << usersData[userIndex - 1] << "$";
+                        break;
+                    case 2: continue;
+                    case 3: break;
+                }
+                break;
+            case 3: break;
+        }
 
         cout << endl << "Do you want continue?" << endl;
         cout << "1 - Yes" << endl;
