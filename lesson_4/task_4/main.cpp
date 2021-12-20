@@ -8,7 +8,7 @@ int main()
     long long hashCode = 0;
     cout << "Enter the string: ";
     cin.getline(str, 200);
-    for (int i = 0; i < 200; i++){
+    for (int i = 0; str[i] != '\0'; i++){
         if (str[i] == 'a' || str[i] == 'e' ||
             str[i] == 'i' || str[i] == 'o' ||
             str[i] == 'u' || str[i] == 'y' ||
@@ -21,7 +21,6 @@ int main()
             if (str[i + 1] != ' ' && str[i + 1] != '\0') hashCode *= 10;
                 else continue;
         }
-        if(str[i] == '\0') break;
     }
     if (str[0] == '\0') cout << "String is empty";
         else cout << "Your hash code: " << hashCode;
