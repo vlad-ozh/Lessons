@@ -12,11 +12,9 @@ int main()
             (str[i + 1] == 'u' || str[i + 1] == 'U') &&
             (str[i + 2] == 'c' || str[i + 2] == 'C') &&
             (str[i + 3] == 'k' || str[i + 3] == 'K')){
-            str[i] = '*';
-            str[i + 1] = '*';
-            str[i + 2] = '*';
-            str[i + 3] = '*';
+            for (int j = i; j < i + 4; j++) str[j] = '*';
         }
     }
     cout << "Your line with an anti-matte filter: " << str;
 }
+
