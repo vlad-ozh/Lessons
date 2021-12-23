@@ -5,9 +5,10 @@ using namespace std;
 int main()
 {
     char str[200] = "";
-    long long hashCode = 0;
+    int hashCode = 0;
     cout << "Enter the string: ";
     cin.getline(str, 200);
+    cout << "Your hash code: ";
     for (int i = 0; str[i] != '\0'; i++){
         if (str[i] == 'a' || str[i] == 'e' ||
             str[i] == 'i' || str[i] == 'o' ||
@@ -17,11 +18,11 @@ int main()
             str[i] == 'U' || str[i] == 'Y'){
             hashCode++;
         }
-        if (str[i] == ' '){
-            if (str[i + 1] != ' ' && str[i + 1] != '\0') hashCode *= 10;
-                else continue;
+        if ((str[i] == ' ' &&
+             str[i + 1] != ' ') ||
+             str[i + 1] == '\0'){
+            cout << hashCode;
+            hashCode = 0;
         }
     }
-    if (str[0] == '\0') cout << "String is empty";
-        else cout << "Your hash code: " << hashCode;
 }
