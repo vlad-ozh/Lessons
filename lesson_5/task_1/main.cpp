@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void drawLineOfSymbols(int sz, char symbol) {
+void drawLineOfSymbols(int sz, string symbol) {
     if (sz > 0) {
         cout << symbol;
         drawLineOfSymbols(sz - 1, symbol);
@@ -10,11 +10,11 @@ void drawLineOfSymbols(int sz, char symbol) {
 }
 
 void drawStars(int sz) {
-    drawLineOfSymbols(sz, '*');
+    drawLineOfSymbols(sz, "* ");
 }
 
 void drawSpaces(int sz) {
-    drawLineOfSymbols(sz, ' ');
+    drawLineOfSymbols(sz, "  ");
 }
 
 void drawFrame (int sz){
@@ -30,16 +30,19 @@ void drawFrame (int sz){
 }
 
 int getUserInput(){
-    int sizeFrame = 0;
+    float sizeFrame = 0;
     cout << "enter size square: ";
     cin >> sizeFrame;
-
-    return sizeFrame;
+    if ( (float)( (int) sizeFrame ) == sizeFrame){
+        return sizeFrame;
+    } else getUserInput();
 }
 
 int main()
 {
-    drawFrame(getUserInput());
+    while(true){
+        drawFrame(getUserInput());
+    }
     return 0;
 }
 
