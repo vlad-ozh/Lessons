@@ -1,8 +1,36 @@
-*.cbp
-bin/
-obj/
 *.layout
-*.depend
-*.o
-*.exe
 Lessons/
+
+# User defined
+bin/
+*.cbp
+*.depend
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Qt
+*/build*
+*.pro.user
+*Makefile
