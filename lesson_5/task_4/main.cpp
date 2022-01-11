@@ -14,8 +14,8 @@ struct roots{
     float x2 = 0;
 };
 
-int userInput(){
-    int coefficient = 0;
+float userInput(){
+    float coefficient = 0;
     cin >> coefficient;
     return coefficient;
 }
