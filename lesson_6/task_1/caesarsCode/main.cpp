@@ -1,8 +1,25 @@
-#include <QCoreApplication>
+#include "caesercode.h"
+#include <iostream>
+#include <string>
 
-int main(int argc, char *argv[])
+using namespace std;
+
+int main()
 {
-    QCoreApplication a(argc, argv);
+    CaeserCode Program;
 
-    return a.exec();
+    switch (Program.inputAction()){
+    case 0:
+        Program.setInputData(Program.userInputData());
+        Program.setInputKey(Program.userInputKey());
+        Program.setOutputCipher(Program.cipherCode(Program.getInputData(), Program.getInputKey()));
+        Program.showResult();
+        break;
+    case 1:
+        Program.setInputData(Program.userInputData());
+        Program.setInputKey(Program.userInputKey());
+        Program.setOutputDecipher(Program.decipherCode(Program.getInputData(), Program.getInputKey()));
+        Program.showResult();
+        break;
+    }
 }
