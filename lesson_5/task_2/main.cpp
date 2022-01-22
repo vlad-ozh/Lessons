@@ -51,18 +51,18 @@ int showAction(string askAction, string actionOne, string actionTwo){
     return valueChoice;
 }
 
-int addMoney(){
+int checkToAddMoney(){
     int value = 0;
     cout << "How much you want to add money: ";
     cin >> value;
     if (value < 1) {
         cout << "Error..." << endl;
         cout << "Try again!" << endl;
-        addMoney();
+        checkToAddMoney();
     } else return value;
 }
 
-int withdrawMoney(int userData){
+int checkToWithdrawMoney(int userData){
     int value = 0;
     cout << "How much you want to withdraw money: ";
     cin >> value;
@@ -70,13 +70,24 @@ int withdrawMoney(int userData){
     if (value > userData){
         cout << "There are not enough funds in your account to withdraw this amount!" << endl;
         cout << "Try again..." << endl;
-        withdrawMoney(userData);
+        checkToWithdrawMoney(userData);
     } else return value;
 }
+
+int askContinue(){
+    switch (showAction("Do you want continue?", "1 - Yes", "2 - No")){
+        case 1:
+            system ("cls");
+            break;
+        default: return -1;
+    }
+}
+
 int main() {
     int usersData[10] = {0};
     int usersPasswords[10] = {0};
-    int userIndex = 0, value = 0;
+    int userIndex = 0;
+    int value = 0;
 
     createUsersData(usersData, usersPasswords);
 
@@ -87,41 +98,20 @@ int main() {
         userData(usersData[userIndex - 1]);
 
         switch (showAction("What i can do?", "1 - Add money", "2 - Withdraw money")){
-        case 1:
-            value = addMoney();
-            switch (showAction("Are you sure?", "1 - Yes", "2 - No")){
-                case 1:
-                    usersData[userIndex - 1] += value;
-                    cout << "Transaction successful!" << endl;
-                    userData(usersData[userIndex - 1]);
-                    break;
-                case 2: continue;
-                default: break;
-            }
-            break;
-        case 2:
-            value = withdrawMoney(usersData[userIndex - 1]);
-            switch (showAction("Are you sure?", "1 - Yes", "2 - No")){
-                case 1:
-                    usersData[userIndex - 1] -= value;
-                    cout << "Transaction successful!" << endl;
-                    userData(usersData[userIndex - 1]);
-                    break;
-                case 2: continue;
-                default: break;
-            }
-            break;
-        default: break;
+            case 1:
+                value = checkToAddMoney();
+                usersData[userIndex - 1] += value;
+                cout << "Transaction successful!" << endl;
+                break;
+            case 2:
+                value = checkToWithdrawMoney(usersData[userIndex - 1]);
+                usersData[userIndex - 1] -= value;
+                cout << "Transaction successful!" << endl;
+                break;
+            default: break;
         }
 
-        switch (showAction("Do you want continue?", "1 - Yes", "2 - No")){
-        case 1:
-            system ("cls");
-            userIndex = 0;
-            value = 0;
-            continue;
-        default: break;
-        }
-        break;
-    } while (true);
+        userData(usersData[userIndex - 1]);
+
+    } while (askContinue() != -1);
 }
