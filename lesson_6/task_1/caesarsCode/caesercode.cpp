@@ -64,12 +64,10 @@ int CaeserCode::inputAction()
 string CaeserCode::cipherCode(string data, int key)
 {
     if (data == ""){
-        setInputData("NO DATA!!!");
         return  "No DATA TO ENCRYPT!!!";
     }
 
     if (key < 0){
-        setInputKey(0);
         return data;
     }
 
@@ -93,12 +91,10 @@ string CaeserCode::cipherCode(string data, int key)
 string CaeserCode::decipherCode(string data, int key)
 {
     if (data == ""){
-        setInputData("NO DATA!!!");
         return  "No DATA TO DENCRYPT!!!";
     }
 
     if (key < 0){
-        setInputKey(0);
         return data;
     }
 
